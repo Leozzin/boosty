@@ -1,0 +1,47 @@
+{% extends "base.html" %} {% load static %}
+{% block page_title %} Nutrition Informations {% endblock %}
+{% block main_container %}
+<div class="container-fluid pl-4 pr-4">
+    <div class="row justify-content-center m-5 p-5">
+        <div class="col-8 col-md-8 col-sm-12">
+            {% if messages %} {% for message in messages %}
+            <div class="alert alert-warning {% if message.tags %} alert-{{ message.tags }}{% endif %}">
+                {{ message|safe }}
+            </div>
+            {% endfor %} {% endif %}
+        </div>
+    </div>
+    {% block page_container %}
+    <div class="row dd">
+        <div class="col-10 col-md-10 col-sm-12">
+            {% if results %}
+            <div>
+                {% for result in results %}
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <img class="card-img-top" src="{{ result.image.url }}" alt="educate image" />
+                    <p class="text-muted"><strong>By</strong>: {{result.user.get_full_name|title}}</p>
+                    <hr />
+                    <div>
+                        <button class="btn btn-primary" id="colla" type="button" data-toggle="collapse" data-target="#collapseDa" aria-expanded="false" aria-controls="collapseDa">
+                            Read More
+                        </button>
+                        <div id="collapseDa" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+                            <h5 class="card-title">{{ result.title_arabe }}</h5>
+                            <p class="card-text">{{ result.description }}</p>
+                            <div class="mt-1"></div>
+                            <p class="card-text">{{ result.description_arabe }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+</div>
+{% endblock %}
+</div>
+{% endblock %}

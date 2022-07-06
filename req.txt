@@ -1,0 +1,16 @@
+django==3.1
+django-jazzmin==2.4.9
+django-tinymce==3.4.0
+django-phonenumber-field==4.0.0
+phonenumbers==8.12.3
+chatterBot==0.5
+wheel==0.37.1
+Pillow==9.0.1
+django-jet==1.0.8
+appdirs==1.4.4
+asgiref==3.2.10
+astroid==2.4.1
+attrs==19.3.0
+Babel==2.8.0
+black==19.10b0
+blis==0.2.4

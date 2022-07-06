@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="company web application">
+    <meta name="author" content="adhem mbarkia">
+    <title>{% block title %}{{title}}Doctor{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/company/base.css' %}">
+    {% block styles %}
+    {% endblock %}
+    {% endblock %}
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="text-light bg-info sidebar-heading font-weight-bold">
+                {{doctor_name|title}}</div>
+            <div class="list-group list-group-flush border-0 bg-secondary bg-light">
+                <a href="{% url 'doctor_educate' %}" class=" bg-light border-0 list-group-item list-group-item-action pb-4 pt-4">
+                    <i data-feather="book"></i>&nbsp; Educate
+                </a>
+            <!--
+                <a href="{% url 'doctor_health' %}" class="bg-light border-0 list-group-item list-group-item-action pb-4 pt-4">
+                    <i data-feather="heart"></i>&nbsp; Heath
+                </a>
+            -->
+                <a href="{% url 'doctor_meet' %}" class="bg-light border-0 list-group-item list-group-item-action pb-4 pt-4">
+                    <i data-feather="video"></i>&nbsp; Meet
+                </a>
+                <a href="{% url 'doctor_send_message' %}" class="bg-light border-0 list-group-item list-group-item-action pb-4 pt-4">
+                    <i data-feather="send"></i>&nbsp; Message
+                </a>
+
+                <a href="{% url 'doctor_profile' %}" class="bg-light border-0 list-group-item list-group-item-action pb-4 pt-4">
+                    <i data-feather="user"></i> &nbsp; Profile
+                </a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-outline-dark" id="menu-toggle"><i data-feather="menu"></i></button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#"><i data-feather="home"></i> <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i data-feather="bell"></i><span class="badge badge-pill badge-primary">3</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i data-feather="user"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#"><i data-feather="settings"></i> settings</a>
+                                <a class="dropdown-item" href="{% url 'logout_user' %}"><i data-feather="log-out"></i> logout</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#"><i data-feather="help-circle"></i> help</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            {% block main_container %}
+            <div class="container-fluid pl-4 pr-4">
+                {% block container %}
+                {% endblock %}
+            </div>
+            {% endblock %}
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <!-- Menu Toggle Script -->
+    <script type="text/javascript">
+    feather.replace()
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
+    {% block scripts %}
+    {% endblock %}
+</body>
+
+</html>

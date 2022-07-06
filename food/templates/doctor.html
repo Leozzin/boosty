@@ -1,0 +1,136 @@
+{% extends "base.html" %} {% load static %} {% block styles %}
+<link href="{% static 'css/doctor.css' %}" rel="stylesheet" />
+{% endblock %} {% block page_container %}
+<div class="messages">
+    {% if messages %} {% for message in messages %}
+    <p class="text-center alert  alert-{{ message.tags }}">
+        {{ message }}
+    </p>
+    {% endfor %} {% endif %}
+</div>
+<div class="row justify-content-center mt-sm-5 mt-md-0">
+    <div class="col-8 col-md-8 col-sm-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="text-center">
+                    <div class="display-6">Register a new account</div>
+                    <div class="text-muted text-center">It's Free!</div>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="{% url 'doctor_register' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputFirstName">First Name</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user-alt"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" id="inputFirstName" placeholder="First Name" name="first_name" required />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputLastName">Last Name</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user-alt"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" id="inputLastName" placeholder="Last Name" name="last_name" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputSpecialty">Specialty</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-suitcase"></i>
+                                    </span>
+                                </div>
+                                <input type="text" placeholder="Specialty" name="specialty" class="form-control" id="inputSpecialty" required />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputTitle">Title</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-user-tag"></i>
+                                    </span>
+                                </div>
+                                <input type="text" class="form-control" placeholder="Title" name="title" id="inputTitle" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPasswor">Birthday</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
+                                <input type="date" name="birthday" placeholder="Birthday" class="form-control" id="inputBirthday" required />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputEmail">Email</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-envelope"></i>
+                                    </span>
+                                </div>
+                                <input type="email" placeholder="Email" name="email" class="form-control" id="inputEmail" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputPasswor">Password</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
+                                <input type="password" name="password" placeholder="Password" class="form-control" id="inputPassword" required />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="inputPasswor">Confirm Password</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-lock"></i>
+                                    </span>
+                                </div>
+                                <input type="password" name="confirmPassword" placeholder="Confirm Password" class="form-control" id="inputConfirmPassword" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="btn btn-block btn-info">
+                                <i class="fas fa-user-plus">&nbsp;</i>Register
+                            </button>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <button type="reset" class="btn btn-block btn-danger">
+                                <i class="fas fa-undo">&nbsp;</i>Reset
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

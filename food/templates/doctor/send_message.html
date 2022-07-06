@@ -1,0 +1,67 @@
+{% extends "doctor/doctor_base.html" %}
+
+{% block styles %}
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"
+  />
+<style>
+	.bg-error {
+		background-color: #dc3545!important;
+	}
+</style>
+{% endblock %}
+
+{% block container %}
+
+<div class="row justify-content-center mt-3">
+	<div class="col-11 col-md-10 m-0">
+		{% if messages %}
+		{% for message in messages %}
+		<div class="card border-0 rounded mb-2 shadow bg-{{message.tags}} animate__backOutRight" id="alertMsg">
+				<p class="card-header text-center text-light">{{message}}</p>
+		</div>
+		{% endfor %}
+		{% endif %}
+		<div class="card border-0 shadow">
+			<div class="card-header border-0">
+				New message
+			</div>
+			<div class="card-body border-0">
+				<form action="{% url 'doctor_send_message' %}" method="POST">
+					{% csrf_token %}
+					<div class="form-group">
+						<label for="receiverInput">Recipient</label>
+						<input type="email" id="receiverInput" class="form-control" name="email" placeholder="Recipient email"  required>
+					</div>
+					<div class="form-group">
+						<label for="subjectInput">Subject</label>
+						<input type="text" id="subjectInput" class="form-control" name="subject" placeholder="Subject" required>
+					</div>
+					<div class="form-group">
+						<label for="contentInput">Message</label>
+						<textarea name="content" id="contentInput" class="form-control" required></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary btn-lg float-right">
+						<i data-feather="send"></i>&nbsp; Send 
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script type="text/javascript">
+	let alertMsg = document.getElementById("alertMsg");
+	setTimeout(function() {
+		alertMsg.style.display = "none";
+	}, 10000);
+</script>
+
+{% endblock %}

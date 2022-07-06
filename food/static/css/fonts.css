@@ -1,0 +1,27 @@
+.fnt-roboto {
+	font-family: "Roboto", "Ubuntu", "Raleway", sans-serif
+}
+
+.fnt-raleway {
+	font-family: "Raleway", "Roboto", "Ubuntu", sans-serif;
+}
+
+.fnt-normal {
+	font-family: arial, sans-serif, monospace;
+}
+
+.fnt-12 {
+	font-size: 12px;
+}
+
+.fnt-14 {
+	font-size: 14px;
+}
+
+.fnt-16 {
+	font-size: 14px;
+}
+
+.fnt-18 {
+	font-size: 14px;
+}

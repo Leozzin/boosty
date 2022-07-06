@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link href="{% static 'css/eshop.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block main_container %}
+<div class="container-fluid p-4">
+    {% block page_container %}
+    <div class="row justify-content-center">
+        <div class="col-9 col-md-9 col-sm-12">
+            <div class="row mb-4">
+                {% csrf_token %}
+                {% for product in products %}
+                <div class="col-4 col-md-4 col-sm-12 eshop-card" data-product-category="{{product.category.name}}">
+                    <div class="card eshop-card__hover ">
+                        <img style="width: auto; height: 300px;" src="{{product.image.url}}" alt="product" class="card-img-top">
+                        <div class="card-body text-capitalize text-center">
+                            <h5 class="card-title text-primary">{{product.price}}</h5>
+                            <h6 class="card-subtitle mb-2 text-info">{{product.name}}</h6>
+                        </div>
+                        <div class="card-footer">
+                            <a data-id="{{product.id}}" href="{% url 'product' id=product.id %}" class="add-card btn btn-block btn-outline-dark m-2 fnt-roboto">
+                                <i data-id="{{product.id}}" class="fas fa-plus"></i> Details
+                            </a>
+                            <a id="addBtn" data-id="{{product.id}}" href="#" class="add-card btn btn-block btn-outline-success m-2 font-roboto">
+                                <i data-id="{{product.id}}" class="fas fa-cart-plus"></i> Add to Cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <!-- <div class="row justify-content-center mt-4">
+        <div class="col-12 col-md-12 div-sm-12">
+            <div class="card">
+                <h4 class="card-header text-center">Our Partners</h4>
+                <div class="card-body">
+                    <div class="row justify-content-center partner">
+                        <div class="col-2">
+                            <figure class="figure">
+                                <img src="{% static './images/partenaire1.jpg' %}" class="figure-img img-thumbnail img-fluid rounded" alt="Out partener logo image">
+                            </figure>
+                        </div>
+                        <div class="col-2">
+                            <figure class="figure">
+                                <img src="{% static './images/partenaire2.jpg' %}" class="figure-img img-thumbnail img-fluid rounded" alt="Out partener logo image">
+                            </figure>
+                        </div>
+                        <div class="col-2">
+                            <figure class="figure">
+                                <img src="{% static './images/partenaire3.jpg' %}" class="figure-img img-thumbnail img-fluid rounded" alt="Out partener logo image">
+                            </figure>
+                        </div>
+                        <div class="col-2">
+                            <figure class="figure">
+                                <img src="{% static './images/partenaire4.png' %}" class="figure-img img-thumbnail  img-fluid rounded" alt="Out partener logo image">
+                            </figure>
+                        </div>
+                        <div class="col-2">
+                            <figure class="figure">
+                                <img src="{% static './images/partenaire5.png' %}" class="figure-img img-fluid img-thumbnail rounded" alt="Out partener logo image">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    {% endblock %}
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/filters.js' %}">
+</script>
+<script type="text/javascript">
+let addBtn = document.getElementById("addBtn");
+let basketBadge = document.getElementById("basketBadge");
+$("#addBtn").on("click", function(event) {
+    console.log(event.target.getAttribute("data-id"));
+    let productId = event.target.getAttribute("data-id");
+    $.ajax({
+        type: "POST",
+        url: "{% url 'add_to_basket' %}",
+        headers: {
+            'X-CSRFtoken': $("input[name=csrfmiddlewaretoken]").val(),
+        },
+        data: {
+            id: productId
+        },
+        success: function() {
+            alert("new item added to basket")
+            basketBadge.innerText = parseInt(basketBadge.innerText, 10) + 1;
+        },
+        error: function(er) {
+            alert(`AKALA::Error: ${er}`)
+        }
+    })
+
+})
+</script>
+{% endblock %}

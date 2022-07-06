@@ -1,0 +1,30 @@
+{% extends "doctor/doctor_base.html" %}
+{% load static %}
+{% block styles %}
+<script src='https://meet.jit.si/external_api.js'></script>
+<style>
+	iframe {
+		min-height: 100% !important;
+		min-width: 100% !important;
+	}
+	.meet {
+		margin: auto !important;
+	}
+</style>
+{% endblock %}
+
+
+{% block main_container %}
+<div class="container h-100 w-100">
+		<div class="row justify-content-lg-center m-0 h-100 mt-4">
+		<div class="col-12 h-100">
+			<div class="meet w-75 h-75" id="meet"></div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/meet.js' %}">
+</script>
+{% endblock %}

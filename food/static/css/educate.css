@@ -1,0 +1,14 @@
+.educate img {
+	width: 200px;
+	height: 200px;
+}
+
+.educate .card-header {
+	color: #333;
+	font-weight: bold;
+	text-align: center;
+}
+
+.educate .card-header:hover {
+	color: #e33d26;
+}

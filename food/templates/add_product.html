@@ -1,0 +1,186 @@
+{% extends "base.html" %} {% block page_container %}
+<div class="row justify-content-center">
+  <div class="col col-8">
+        {% if messages %} {% for message in messages %}
+    <p class="text-center alert  alert-{{ message.tags }}">
+        {{ message }}
+    </p>
+    {% endfor %} {% endif %}
+  </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col col-md-8">
+        <form action="{% url 'add_product' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+            <div class="card shadow mb-4">
+                <h5 class="card-header bg-success text-light">
+                    Product
+                </h5>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="">Product Name</label>
+                                <input type="text" name="product_name" class="form-control rounded" placeholder="Product name" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Barcode</label>
+                                <input type="number" name="barcode" class="form-control rounded" placeholder="Barcode" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Country</label>
+                                <input type="text" name="country" class="form-control rounded" placeholder="Country" required="true">
+                            </div>
+                        </div>
+                        <!-- First Row -->
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="">Quantity</label>
+                                <input type="number" name="quantity" class="form-control rounded" placeholder="Quantity" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Tags</label>
+                                <input type="text" name="tags" class="form-control rounded" placeholder="Tags" required="true">
+                            </div>
+                        <div class="col">
+                        <label for="categorySelect">Category</label>
+                        <select name="category" class="selectpicker form-control rounded w-100" id="categorySelect" data-live-search="true" title="Choose category" data-width="100%">
+                          <option value="sweets">Sweet snacks</option>
+                          <option value="fruits">Fruit Vegetebales</option>
+                          <option value="savoury">Savoury Snacks</option>
+                          <option value="milk">Bold and Sauces</option>
+                          <option value="cereals">Cereal and Cereal Products</option>
+                          <option value="fish">Fish Meat and Eggs</option>
+                          <option value="beverages">Beverages</option>
+                        </select>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="from-group">
+                                <label for="productImage">Image</label>
+                                <input type="file" class="form-control" name="product_image" required="true">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Last Part -->
+                </div>
+            </div>
+            <!-- First Part -->
+            <div class="card shadow mb-4">
+                <h5 class="card-header bg-success text-light">
+                    Ingredients
+                </h5>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="ingredientsText">Ingredients</label>
+                        <textarea name="ingredients" class="form-control" id="ingredientsText" required="true"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="ingredientImage">Image</label>
+                        <input type="file" name="ingredients_image" class="form-control" required="true">
+                    </div>
+                </div>
+            </div>
+            <!-- Second Part -->
+            <div class="card shadow mb-4">
+              <h4 class="card-header bg-success text-light">
+                Nutrition
+              </h4>
+                <div class="card-body">
+                    <div class="form-group">
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="">Energy Kcal</label>
+                                <input type="number" name="energy_kcal" class="form-control rounded" placeholder="Energy Kcal" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Energy Kj</label>
+                                <input type="number" name="energy_kj" class="form-control rounded" placeholder="Energy Kj" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Sugar</label>
+                                <input type="number" name="sugar" class="form-control rounded" placeholder="Sugar" required="true">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="">Fiber</label>
+                                <input type="number" name="fiber" class="form-control rounded" placeholder="Fiber" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Protein</label>
+                                <input type="number" name="protein" class="form-control rounded" placeholder="Protein" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Sodium</label>
+                                <input type="number" name="sodium" class="form-control rounded" placeholder="Sodium" required="true">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="">Fat</label>
+                                <input type="number" name="fat" class="form-control rounded" placeholder="Fat" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Saturated Fat</label>
+                                <input type="number" name="saturated_fat" class="form-control rounded" placeholder="Saturated Fat" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Carbohydrates</label>
+                                <input type="number" name="carbohydrates" class="form-control rounded" placeholder="Carbohydrates" required="true">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="col">
+                                <label for="">Lipids</label>
+                                <input type="number" name="lipids" class="form-control rounded" placeholder="Lipids" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Salt</label>
+                                <input type="number" name="salt" class="form-control rounded" placeholder="Salt" required="true">
+                            </div>
+                            <div class="col">
+                                <label for="">Additives</label>
+                                <input type="text" name="additives" class="form-control rounded" placeholder="additives" required="true">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="nutritionImage">Image</label>
+                          <input type="file" class="form-control" name="nutrition_image" required="true">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-success float-right shadow rounded">
+              <i class="fas fa-save"></i>&nbsp; Save
+            </button>
+        </form>
+    </div>
+</div>
+{% endblock %} {% block scripts %}
+<script type="text/javascript">
+let imageUpload = document.querySelector("#imageUpload");
+let progressBar = document.querySelector("#progressBar");
+
+imageUpload.addEventListener("change", function(e) {
+    var done = false;
+    var value = 0;
+    setTimeout(function() {
+        for (let i = 0; i <= 100; i += 20) {
+            progressBar.style.width = `${i}%`;
+            progressBar.innerHTML = `file uploaded successfuly!`;
+        }
+    }, 1000);
+});
+</script>
+
+<script type="text/javascript">
+  let ingredientsText = document.getElementById("ingredientsText");
+
+</script>
+{% endblock %}

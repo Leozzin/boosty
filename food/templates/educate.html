@@ -1,0 +1,90 @@
+{% extends "base.html" %} {% load static %} {% block styles %}
+<link href="{% static 'css/educate.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block page_title %} Educate {% endblock %}
+{% block page_container %}
+<div class="row justify-content-center educate">
+    <div class="col-3">
+        <a href="/list_educate/all" class="card">
+            <div class="card-header">
+                Nutrition for all
+            </div>
+            <div class="card-body">
+                <img src="{% static 'images/nutrition_tous.png' %}" alt="" />
+            </div>
+        </a>
+    </div>
+    <div class="col-3">
+        <a href="/list_educate/bebe" class="card">
+            <div class="card-header">
+                Nutrition for babes
+            </div>
+            <div class="card-body">
+                <img src="{% static 'images/baby.png' %}" alt="" />
+            </div>
+        </a>
+    </div>
+    <div class="col-3">
+        <a href="/list_educate/diabete" class="card">
+            <div class="card-header">
+                Diabetes
+            </div>
+            <div class="card-body">
+                <img src="{% static 'images/diabete.jpg' %}" alt="" />
+            </div>
+        </a>
+    </div>
+    <div class="col-3">
+        <a href="/list_educate/allergy" class="card">
+            <div class="card-header">
+                Allergies
+            </div>
+            <div class="card-body">
+                <img src="{% static 'images/allergy.jpg' %}" alt="" />
+            </div>
+        </a>
+    </div>
+</div>
+<div class="row justify-content-center mt-3 educate">
+    <div class="col-3">
+        <a href="/list_educate/obesity" class="card">
+            <div class="card-header">
+                Obesity
+            </div>
+            <div class="card-body">
+                <img src="{% static 'images/obesity.png' %}" alt="" />
+            </div>
+        </a>
+    </div>
+    <div class="col-3">
+        <a href="/list_educate/constipation" class="card">
+            <div class="card-header">
+                Constipation
+            </div>
+            <div class="card-body">
+                <img src="{% static 'images/constipation.png' %}" alt="" />
+            </div>
+        </a>
+    </div>
+    <div class="col-3">
+        <a href="/list_educate/pregnant" class="card">
+            <div class="card-header">
+                Pregnant women nutrition
+            </div>
+            <div class="card-body">
+                <img src="{% static 'images/enceinte.jpg' %}" alt="" />
+            </div>
+        </a>
+    </div>
+    <div class="col-3">
+        <a href="/list_educate/sport" class="card">
+            <div class="card-header">
+                Sports nutrition
+            </div>
+            <div class="card-body">
+                <img src="{% static 'images/sport.jpg' %}" alt="" />
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,71 @@
+ .btnx {
+ 	border-radius: 4px;
+ 	padding: 6px !important;
+ }
+
+ .signup-btn {
+	display: block !important;
+	position: relative !important;
+	margin: auto !important;
+	border-radius: 20px !important;
+	padding: 8px !important;
+	width: 100px !important;
+	border: none !important;
+	margin-top: 20px !important;
+	background-color: #0259a5 !important;
+}
+
+.cancel-btn {
+	display: block !important;
+	position: relative !important;
+	margin: auto !important;
+	border-radius: 20px !important;
+	padding: 8px !important;
+	width: 100px !important;
+	border: none !important;
+	margin-top: 20px !important;
+}
+
+.fdt {
+	background-color: #fff;
+	display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 3px;
+}
+.form-block {
+    background-color: #e1eef7;
+    border-radius: 7px;
+}
+
+form input{
+	border-top-right-radius: 4px !important;
+	border-bottom-right-radius: 4px !important;
+}
+
+
+.form-header h6{
+	font-family: "Roboto", "ubuntu", sans-serif, monospace;
+}
+.form-header p {
+	font-family: "Raleway", "Roboto", "ubuntu", sans-serif, monospace;
+}
+
+.btn-circle {
+	width: 30px !important;
+	height: 30px !important;
+	text-align: center !important;
+	padding: 6px 0 !important;
+	font-size: 12px !important;
+	line-height: 1.428571429 !important;
+	border-radius: 15px !important;
+}
+.btn-circle.btn-lg {
+	width: 50px !important;
+	height: 50px !important;
+	padding: 13px 13px !important;
+	font-size: 18px !important;
+	line-height: 1.33 !important;
+	border-radius: 25px !important;
+}
+

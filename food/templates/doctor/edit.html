@@ -1,0 +1,74 @@
+{% extends "doctor/doctor_base.html" %}
+{% block container %}
+<div class="row ">
+    <div class="col-12 col-md-12 col-sm-12">
+        <div class="card shadow mt-4 shadow">
+            <h4 class="card-header bg-primary text-light">Update</h4>
+            <div class="card-body">
+                <form action="{% url 'update_educate' edu=educate.id %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-7 col-md-7 col-sm-12">
+                            <div class="form-group">
+                                <label for="titleInput">Title</label>
+                                <input name="title" type="text" required class="form-control" id="titleInput" placeholder="{{educate.title}}" value="{{educate.title}}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="titleArabeInput">Title arabe</label>
+                                <input name="title_arabe" type="text" class="form-control" id="titleArabeInput" placeholder="{{educate.title_arabe}}" value="{{educate.title_arabe}}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="sourceInput">Source</label>
+                                <input name="source" type="text" class="form-control" id="sourceInput" placeholder="{{educate.source}}" value="{{educate.source}}" />
+                            </div>
+                            <div class="form-group">
+                                <label for="descriptionInput">Description</label>
+                                <textarea name="description" class="form-control" required id="descriptionInput" rows="3">{{educate.description}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="descriptionArabeInput">Description in arabe</label>
+                                <textarea name="description_arabe" class="form-control" required id="descriptionArabeInput" rows="3">{{educate.description_arabe}}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="typeInput">Type</label>
+                                <select name="type" class="form-control selectpicker" id="typeInput" required>
+                                    <option value="{{educate.educate_type}}">{{educate.educate_type}}</option>
+                                    <option value="all">Nutrition for all</option>
+                                    <option value="pregnant women nutrition">Pregnant women nutrition</option>
+                                    <option value="allergy">Allergy</option>
+                                    <option value="diabete">Diabete</option>
+                                    <option value="obesity">Obesity</option>
+                                    <option value="constipation">Constipation</option>
+                                    <option value="sport">Sport</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-5 col-md-5 col-sm-12">
+                            <div class="form-group">
+                                <label for="imageInput">Image</label>
+                                <input name="image_file" type="file" class="form-control-file" id="imageInput" value="{{educate.image.url}}" />
+                            </div>
+                            <div class="image__preview">
+                                <div class="card" style="width: 26rem; height: 18rem;">
+                                    <div class="card-body">
+                                        <img class="img-thumbnail" id="imagePreview" src="" alt="uploaded image" style="width: 24rem; height: 16rem;">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="progress mt-3">
+                                <div id="progressBar" class="progress-bar bg-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-info" type="submit">
+                        <i data-feather="save"></i>&nbsp; Save
+                    </button>
+                    <button class="btn btn-danger" type="reset">
+                        <i data-feather="refresh-ccw"></i>&nbsp; Reset
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

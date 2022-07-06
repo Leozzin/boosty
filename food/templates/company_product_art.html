@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+{% block styles %}
+<style>
+.circle {
+  position:relative;
+  width: 40px;
+  height: 40px;
+  padding: 10px;
+  border-radius:100%;
+}
+
+.a {
+    background: green;
+}
+
+.b {
+    background: yellow;
+}
+.c {
+    background: orange;
+}
+.d {
+    background: pink ;
+}
+.e {
+    background: #fb3434;
+}
+
+
+.text-centered {
+  text-align: center;
+  position: absolute;
+  left: 10px;
+  top: -7px;
+  bottom: -12px;
+  font-size: 30px;
+  font-weight: bold;
+}
+</style>
+{% endblock %}
+
+{% block page_container %}
+<div class="row justify-content-end mb-4">
+    <div class="col col-md-4">
+        <a href="#" class="btn btn-warning rounded">
+            <i class="fas fa-edit"></i>&nbsp; Edit
+        </a>
+    </div>
+    <div class="col- col-md-4">
+        <a href="#" class="btn btn-info rounded">
+            <i class="fas fa-plug"></i>&nbsp; Associate
+        </a>
+    </div>
+</div>
+<div class="row justify-content-between">
+    <div class="col col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <div class="content">
+                    <img src="/media/{{product.image}}" alt="{{product.name}}" width="auto" height="auto">
+                </div>
+            </div>
+        </div>
+        <h5 class="text-center float-left m-0 mt-3">
+            {{product.name}}
+        </h5>
+    </div>
+    <!-- Product start here -->
+    <div class="col col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <div class="content">
+                    <table class="table table-striped">
+                        <tr>
+                            <td class="font-weight-bold">Product Name</td>
+                            <td>{{product.name}}</td>
+                        </tr>
+                        <tr>
+                            <td class="font-weight-bold">Product Description</td>
+                            <td>{{product.description}}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <a class="text-center btn btn-success rounded" href="#">
+                    <i class="fas fa-save"></i>&nbsp; Save
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Produt details end here -->
+<div class="row mt-4">
+    <div class="col col-md-4">
+        <div class="content">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <i class="fas fa-clock"></i>&nbsp; &nbsp;
+                    24/08/2020
+                </li>
+                <li class="list-group-item">
+                    <i class="fas fa-heart"></i>&nbsp; &nbsp;
+                    1 <span class="float-right">
+                        <i class="fas fa-thumbs-up text-danger"></i>
+                        <i class="fas fa-thumbs-down"></i>
+                    </span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Users Love end here -->
+<!-- Additives end here -->
+<
+        {% endblock %}
+        {% block scripts %}
+        <script type="text/javascript">
+        let commentBtn = document.getElementById("commentBtn");
+        let commentText = document.getElementById("commentText");
+        let comments = document.getElementById("comments");
+
+        commentBtn.addEventListener("click", function(e) {
+            var comment = commentText.value;
+            var id = "{{product.id}}";
+            console.log(comment)
+            $.ajax({
+                url: "{% url 'comment_product' %}",
+                type: "post",
+                headers: {
+                    "X-CSRFToken": $('[type="hidden"]').val(),
+                },
+                data: {
+                    "id": id,
+                    "comment": comment,
+                },
+                success: function(e) {
+                    console.log(e);
+                    let date = new Date();
+                    date = `${date.getDay()}/${date.getMonth()}/${date.getFullYear()} - ${date.getHours()}:${date.getMinutes()}`
+
+                    let html = `<div class="comment">
+                        <p class="text-left text-dark">
+                            ${comment}
+                        </p>
+                        <small class="text-muted float-right">${date}</small>
+                    </div>`
+                    comments.innerHTML += html;
+                    console.log("Successfully commented");
+
+                },
+                error: function(e) {
+                    console.log("Error creating new comment");
+                },
+            })
+        })
+        </script>
+        {% endblock %}

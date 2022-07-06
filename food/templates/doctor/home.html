@@ -1,0 +1,74 @@
+{% extends "doctor/doctor_base.html" %}
+{% load static %}
+{% block container %}
+<h1 class="mt-4 mb-md-3">Activities</h1>
+<div class="row mb-5">
+    <div class="col-12 col-md-3 col-sm-12 mb-sm-4">
+        <div class="card border-0 shadow ">
+            <h4 class="card-header border-0 bg-success text-light">
+                Healed Patients
+            </h4>
+            <div class="card-body border-0">
+                <h3 class="display-4 text-center font-weight-bold">34</h3>
+            </div>
+            <div class="card-footer border-0 text-muted text-center">
+                <i data-feather="refresh-ccw"></i>&nbsp; Updated Now
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-3 col-sm-12 mb-sm-4">
+        <div class="card border-0 shadow">
+            <h4 class="card-header border-0 bg-warning text-light">
+                Patients Pending
+            </h4>
+            <div class="card-body border-0">
+                <h3 class="display-4 text-center font-weight-bold">4</h3>
+            </div>
+            <div class="card-footer text-center text-muted border-0">
+                <i data-feather="calendar"></i>&nbsp; Last day
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-3 col-sm-12 mb-sm-4">
+        <div class="card border-0 shadow">
+            <h4 class="card-header border-0 bg-primary text-light">
+                Comments
+            </h4>
+            <div class="card-body border-0">
+                <h3 class="display-4 text-center font-weight-bold">34</h3>
+            </div>
+            <div class="card-footer text-center text-muted border-0">
+                <i data-feather="clock"></i>&nbsp; Last hour
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-md-3 col-sm-12 mb-sm-4">
+        <div class="card border-0 shadow">
+            <h4 class="card-header border-0 bg-info text-light">
+                Mentions
+            </h4>
+            <div class="card-body border-0">
+                <h3 class="display-4 text-center font-weight-bold">134</h3>
+            </div>
+            <div class="card-footer text-center text-muted border-0">
+                <i data-feather="refresh-ccw"></i>&nbsp; Updated now
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-5">
+    <div class="col-12 col-md-12 col-sm-12">
+        <div class="card border-0 shadow">
+            <h4 class="card-header border-0">Your progress</h4>
+            <div class="card-body border-0">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script type="text/javascript" src="{% static 'js/doctor/utils.js' %}"> </script>
+<script type="text/javascript" src="{% static 'js/doctor/doctor.js' %}"> </script>
+{% endblock %}

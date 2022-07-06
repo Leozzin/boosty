@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+
+{% if messages  %}
+    <div class="header text-center">
+        {% for message in messages %}
+            <div class="p-3 alert alert-{{message.tags}}">
+                <p>{{message}}</p>
+            </div>
+            {%  endfor %}
+    </div>
+{% endif  %}
+
+{% block page_container %}
+
+<div class="row justify-content-center mb-5">
+	<div class="col col-md-3 mb-3">
+		<a href="{% url 'customer_product' f=product.id %}" class="card shadow">
+			<img src="{{product.image}}" alt="{{product.product_name}}">
+			<div class="card-body">
+				<h5 class="text-center text-dark">{{product.product_name|capfirst}}</h5>
+			</div>
+		</a>
+	</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+.custom-btn {
+	border: none !important;
+}
+
+.blue-btn {
+	background-color: #0096d6 !important;
+}
+
+.blue-btn:focus {
+	border: 1px solid #0096d6;
+	box-shadow: 0 0 0 0.2rem rgba(87, 182, 238, 0.7) !important;
+}
+
+.center-btn {
+	max-width: 200px !important;
+	min-width: 100px !important;
+	margin: auto !important;
+}
+
+.green-btn {
+	background-color: #19aa96 !important;
+}
+
+.btn-rounded {
+	border-radius: 4px !important;
+}

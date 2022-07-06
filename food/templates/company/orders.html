@@ -1,0 +1,70 @@
+{% extends "company/company_base.html" %}
+{% load static %}
+{% block container %}
+<div class="custom-messages">
+    {% if messages %} {% for message in messages %}
+    <p class="text-center alert  alert-{{ message.tags }}">
+        {{ message }}
+    </p>
+    {% endfor %} {% endif %}
+</div>
+<div class="row mt-4">
+    <div class="col-12 col-md-12 col-sm-12">
+        {# <h5 class="card-header">Orders</h5> #}
+        <div class="row justify-content-between">
+            <div class="col-4 col-md-4">
+                <label class="font-weight-bold" for="dataFilter">Filter</label>
+                <select class="form-control selectpicker" name="filter" id="dataFilter">
+                    <option selected>Filter by...</option>
+                    <option value="date">Date</option>
+                    <option value="product">Product</option>
+                    <option value="price">Price</option>
+                    <option value="quantity">Quantity</option>
+                </select>
+            </div>
+            <div class="col-4 col-md-5">
+                <label class="font-weight-bold" for="searchBox">Search</label>
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" id="searchBox" placeholder="Type to search" aria-label="Search" aria-describedby="basic-addon1">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">
+                            <i data-feather="search"></i>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-12 col-sm-12">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-hover text-center">
+                        <thead class="thead-dark">
+                            <th><i class="fas fa-tools"></i></th>
+                            <th>Order</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Payment</th>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                            <tr>
+                                <td><a href="#"><i class="fas fa-trash text-danger"></i></a></td>
+                                <td class="text-uppercase"><span class="font-weight-bold badge badge-pill badge-success">{{order.order_number}}</span></td>
+                                <td class="text-muted">{{order.createdAt}}</td>
+                                <td><span class="badge badge-info">{{order.status}}</span></td>
+                                <td><span class="font-weight-bold">{{order.payment}} TND</span></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+console.log("check out page")
+</script>
+{% endblock %}

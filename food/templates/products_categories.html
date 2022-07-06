@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_container %}
+<div class="row justify-content-center mb-5">
+    <div class="col">
+        <div class="container">
+            <div class="card card-shadow">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3 class="text-center">Categories</h3>
+                    </div>
+                </div>
+                <!-- end section-title -->
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6 col-md-3">
+                            <a href="{% url 'products' f='fruits' %}" class="big-bone">
+                                <figure>
+                                    <img src="{% static 'images/products/fruits.jpg'%}" alt="food l" />
+                                </figure>
+                                <h6 class="text-center mt-1 text-dark">Fruits and Vegetables</h6>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a href="{% url 'products' f='fish' %}" class="big-bone">
+                                <figure>
+                                    <img src="{% static 'images/products/fish.png'%}" alt="food l" />
+                                </figure>
+                                <h6 class="text-center mt-1 text-dark">Fish Meat Eggs</h6>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a href="{% url 'products' f='beverage' %}" class="big-bone">
+                                <figure>
+                                    <img src="{% static 'images/products/beverages.jpg'%}" alt="food l" />
+                                </figure>
+                                <h6 class="text-center mt-1 text-dark">Beverages</h6>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <a href="{% url 'products' f='savoury' %}" class="big-bone">
+                                <figure>
+                                    <img src="{% static 'images/products/savoury.jpg'%}" alt="food l" />
+                                </figure>
+                                <h6 class="text-center mt-1 text-dark">Savoury Snacks</h6>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row mt-4">
+                        <div class="col-6 col-md-3">
+                            <a href="{% url 'products' f='sauces' %}" class="big-bone">
+                                <figure>
+                                    <img src="{% static 'images/products/sauces.jpg'%}" alt="food l" />
+                                </figure>
+                                <h6 class="text-center mt-1 text-dark">Bold and Sauces</h6>
+                            </a>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-6 col-md-3">
+                            <a href="{% url 'products' f='cereals' %}" class="big-bone">
+                                <figure>
+                                    <img src="{% static 'images/products/cereal and cereals products.jpg'%}" alt="beverage l" />
+                                </figure>
+                                <h6 class="text-center mt-1 text-dark">
+                                    Cereals and Cereal products
+                                </h6>
+                            </a>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-6 col-md-3">
+                            <a href="{% url 'products' f='milk' %}" class="big-bone">
+                                <figure>
+                                    <img src="{% static 'images/products/milk.jpg'%}" alt="dessert l" />
+                                </figure>
+                                <h6 class="text-center text-dark mt-1">Milk and Milk Products</h6>
+                            </a>
+                        </div>
+                        <!-- end col -->
+                        <div class="col-6 col-md-3">
+                            <a href="{% url 'products' f='sweet' %}" class="big-bone">
+                                <figure>
+                                    <img src="{% static 'images/products/sweet_snacks.jpeg'%}" alt="pudding l" />
+                                </figure>
+                                <h6 class="text-center text-dark mt-1">Sweet Snacks</h6>
+                            </a>
+                        </div>
+                        <!-- end col -->
+                    </div>
+                </div>
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container -->
+    </div>
+</div>
+{% endblock %}

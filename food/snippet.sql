@@ -1,0 +1,4 @@
+SELECT product_name AS product, allergy, name AS category
+FROM food_productcategory_products
+INNER JOIN food_productcategory ON food_productcategory.id=food_productcategory_products.productcategory_id
+INNER JOIN food_customerproduct ON food_customerproduct.id=food_productcategory_products.customerproduct_id;

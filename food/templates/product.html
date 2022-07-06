@@ -1,0 +1,184 @@
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link href="{% static 'css/eshop.css' %}" rel="stylesheet" />
+{% endblock %}
+{% block main_container %}
+<div class="row justify-content-center mb-4">
+    <div class="col-10 col-md-10 col-sm-12">
+        <div>
+            <div class="row justify-content-between mr-auto">
+                <div class="col-6">
+                    <h3>Product Details</h3>
+                </div>
+                <div class="col-md-6">
+                    <div class="row justify-content-between">
+                        <div class="col-3 col-md-3">
+                            <button id="addBtn" class="btn btn-dark">
+                                <i class="fas fa-plus">&nbsp;</i>Cart
+                            </button>
+                        </div>
+                        <div class="col-3 col-md-3" hidden>
+                            <button id="associateBtn" class="btn btn-info">Associate</button>
+                        </div>
+                        <div class="col-3 col-md-3" hidden>
+                            <button disabled data-product-id="{{product.id}}" id="buyBtn" class="btn btn-primary">
+                                <i class="fas fa-cart-plus"></i>
+                                Buy</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-between m-lg-5">
+                <div class="col-4 col-md-4 col-sm-4">
+                    <img class="img-fluid" src="{{product.image.url}}" alt="placeholder image">
+                </div>
+                <div class="col-6 col-md-6 col-sm-6">
+                    <table class="table" id="productTable" data-product-id="{{product.id}}">
+                        {% csrf_token %}
+                        <tbody>
+                            <tr>
+                                <td><strong>Product Name</strong></td>
+                                <td>{{product.name}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Category</strong></td>
+                                <td>{{product.category}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Producer</strong></td>
+                                <td>{{product.owner}}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Description</strong></td>
+                                <td>{{product.description}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- <div class="row justify-content-between">
+                <div class="col-5">
+                    <div class="row">
+                        <div class="col-12 col-md-12 col-sm-12">
+                            <div class="card bg-dark">
+                                <h6 class="card-header text-light">
+                                    Added By
+                                </h6>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <i class="fas fa-user">&nbsp;</i> {{product.owner.get_full_name}}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <i class="fas fa-clock">&nbsp;</i>
+                                        <time datetime="{{product.created}}">{{product.created}}</time>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="row justify-content-between">
+                                            <div class="col-2 ">
+                                                <i class="fas text-danger fa-heart text-le">&nbsp;</i>
+                                                1
+                                            </div>
+                                            <div class="col-3">
+                                                <i class=" text-success fas fa-thumbs-up">&nbsp;</i>
+                                                <i class="text-danger fas fa-thumbs-down">&nbsp;</i>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-7 col-md-7 col-sm-12">
+                    <div class=" card mb-2 bg-faded">
+                        <h6 class="card-header">Comments <span class="text-info">not implemented</span></h6>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quis commodi sequi soluta veritatis consequuntur. Dolorum neque facere ipsum enim, maxime blanditiis, unde porro dicta veniam minima iusto illum mollitia.
+                            <br><small class="text-muted">Created &nbsp;<time datetime="2020-20-08">2020-20-08</time></small>
+                            <br><small class="text-muted">User: John Doe.</small>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quis commodi sequi soluta veritatis consequuntur. Dolorum neque facere ipsum enim, maxime blanditiis, unde porro dicta veniam minima iusto illum mollitia.
+                            <br><small class="text-muted">Created &nbsp;<time datetime="2020-20-08">2020-20-08</time></small>
+                            <br><small class="text-muted">User: John Doe.</small>
+                        </div>
+                    </div>
+                    <div class="card mb-2">
+                        <div class="card-body">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et quis commodi sequi soluta veritatis consequuntur. Dolorum neque facere ipsum enim, maxime blanditiis, unde porro dicta veniam minima iusto illum mollitia.
+                            <br><small class="text-muted">Created &nbsp;<time datetime="2020-20-08">2020-20-08</time></small>
+                            <br><small class="text-muted">User: John Doe.</small>
+                        </div>
+                    </div>
+                    <hr class="mt-4 mb-4">
+                    <div class="card">
+                        <h6 class="card-header bg-dark text-light">Add new comments</h6>
+                        <div class="card-body">
+                            <form method="POST" action="#">
+                                <textarea name="comment" id="commentForm" cols="58" rows="4"></textarea>
+                                <button class="btn btn-dark text-light t mt-2"><i class="fas fa-comment">&nbsp;</i>Comment</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!--// row END HERE -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+let addBtn = document.getElementById("addBtn");
+let buyBtn = document.getElementById("buyBtn");
+let associateBtn = document.getElementById("associateBtn");
+let basketBadge = document.getElementById("basketBadge");
+
+buyBtn.addEventListener("click", function(event) {
+    $.ajax({
+        type: "POST",
+        url: "{% url 'create_order' %}",
+        headers: {
+            'X-CSRFtoken': $("input[name=csrfmiddlewaretoken]").val(),
+        },
+        data: {
+            id: buyBtn.getAttribute("data-product-id"),
+            item_count: 1
+        },
+        success: function() {
+            alert("You purchased new product")
+        },
+        error: function(er) {
+            alert(`AKALA::Error: ${er}`)
+        }
+    })
+})
+
+
+addBtn.addEventListener("click", function(event) {
+    $.ajax({
+        type: "POST",
+        // url: "{% url 'add_to_basket' %}",
+        url: "/store/add_to_cart/",
+        headers: {
+            'X-CSRFtoken': $("input[name=csrfmiddlewaretoken]").val(),
+        },
+        data: {
+            id: document.querySelector("#productTable").getAttribute("data-product-id")
+        },
+        success: function() {
+            alert("new product added to your basket")
+            basketBadge.innerText = parseInt(basketBadge.innerText, 10) + 1;
+        },
+        error: function(er) {
+            alert(`AKALA::Error: ${er}`)
+        }
+    })
+})
+</script>
+{% endblock %}

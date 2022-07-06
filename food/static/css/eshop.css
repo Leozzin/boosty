@@ -1,0 +1,12 @@
+.eshop-card__normal {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+.eshop-card__hover:hover {
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.wi-400 {
+    width: 400px !important;
+    margin: auto !important;
+}

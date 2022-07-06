@@ -1,0 +1,214 @@
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link href="{% static 'css/eshop.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
+{% endblock %}
+{% block main_container %}
+<div class="row justify-content-center">
+    <div class="col-8 col-md-8 col-sm-12">
+        <div class="mb-5 p-4 bg-white shadow-sm">
+            <h3>Add Product</h3>
+            <div id="stepper1" class="bs-stepper linear">
+                <div class="bs-stepper-header" role="tablist">
+                    <div class="step active" data-target="#test-l-1">
+                        <button type="button" class="step-trigger" role="tab" id="stepper1trigger1" aria-controls="test-l-1" aria-selected="true">
+                            <span class="bs-stepper-circle">1</span>
+                            <span class="bs-stepper-label">Step 1</span>
+                        </button>
+                    </div>
+                    <div class="bs-stepper-line"></div>
+                    <div class="step" data-target="#test-l-2">
+                        <button type="button" class="step-trigger" role="tab" id="stepper1trigger2" aria-controls="test-l-2" aria-selected="false" disabled="disabled">
+                            <span class="bs-stepper-circle">2</span>
+                            <span class="bs-stepper-label">Step 2</span>
+                        </button>
+                    </div>
+                    <div class="bs-stepper-line"></div>
+                    <div class="step" data-target="#test-l-3">
+                        <button type="button" class="step-trigger" role="tab" id="stepper1trigger3" aria-controls="test-l-3" aria-selected="false" disabled="disabled">
+                            <span class="bs-stepper-circle">3</span>
+                            <span class="bs-stepper-label">Step 3</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="bs-stepper-content">
+                    <form action="{% url 'eshop_add' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div id="test-l-1" role="tabpanel" class="bs-stepper-pane active dstepper-block" aria-labelledby="stepper1trigger1">
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="nameInput">Name</label>
+                                    <input name="product" type="text" class="form-control" id="nameInput" placeholder="Enter product name">
+                                </div>
+                                <div class="col">
+                                    <label for="nameInput">Producer</label>
+                                    <input name="producer" type="text" class="form-control" id="nameInput" placeholder="Enter producer name">
+                                </div>
+                                <div class="col">
+                                    <label for="barcodeInput">Product barcode</label>
+                                    <input name="barcode" type="text" class="form-control" id="barcodeInput" placeholder="Enter product barcode">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="nameInput">Category</label>
+                                    <select name="category" class="form-control selectpicker">
+                                        <option selected>Select Category...</option>
+                                        <option value="slimming">Slimming</option>
+                                        <option value="allergy">Allergy</option>
+                                        <option value="beauty">Beauty</option>
+                                        <option value="food">Food</option>
+                                        <option value="healthy">Healthy products</option>
+                                        <option value="supplements">Food supplements</option>
+                                    </select>
+                                </div>
+                                <div class="col">
+                                    <label for="nameInput">Weight</label>
+                                    <input name="weight" type="text" class="form-control" id="nameInput" placeholder="Enter product weight">
+                                </div>
+                                <div class="col">
+                                    <label for="barcodeInput">Quantity</label>
+                                    <input name="quantity" type="text" class="form-control" id="barcodeInput" placeholder="Enter product quantity">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="nameInput">System manuel</label>
+                                    <input name="system_manuel" type="text" class="form-control" id="nameInput" placeholder="Enter system manuel">
+                                </div>
+                                <div class="col">
+                                    <label for="nameInput">Recommend</label>
+                                    <input name="recommend" type="text" class="form-control" id="nameInput" placeholder="Recommend to">
+                                </div>
+                                <div class="col">
+                                    <label for="barcodeInput">Product Ingredients</label>
+                                    <input name="ingredients" type="text" class="form-control" id="barcodeInput" placeholder="Enter product ingredients">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="nameInput">Price</label>
+                                    <input name="price" type="text" class="form-control" id="nameInput" placeholder="Enter product price">
+                                </div>
+                                <div class="col">
+                                    <label for="nameInput">Properties</label>
+                                    <input name="properties" type="text" class="form-control" id="nameInput" placeholder="Enter product properties">
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary mt-3" onclick="stepper1.next()">Next</button>
+                        </div>
+                        <div id="test-l-2" role="tabpanel" class="bs-stepper-pane" aria-labelledby="stepper1trigger2">
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="nameInput">Calories</label>
+                                    <input name="calories" type="text" class="form-control" id="nameInput" placeholder="Enter product name">
+                                </div>
+                                <div class="col">
+                                    <label for="nameInput">Lipid Energy(Kal)</label>
+                                    <input name="lipid_energy" type="text" class="form-control" id="nameInput" placeholder="Enter product name">
+                                </div>
+                                <div class="col">
+                                    <label for="barcodeInput">Fat(100/g)</label>
+                                    <input name="fat" type="text" class="form-control" id="barcodeInput" placeholder="Enter product barcode">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="nameInput">Satureted Fat (100/g)</label>
+                                    <input name="saturated_fat" type="text" class="form-control" id="nameInput" placeholder="Enter product name">
+                                </div>
+                                <div class="col">
+                                    <label for="nameInput">Sodium (100/g)</label>
+                                    <input name="sodium" type="text" class="form-control" id="nameInput" placeholder="Enter product name">
+                                </div>
+                                <div class="col">
+                                    <label for="barcodeInput">Salt (100/g)</label>
+                                    <input name="salt" type="text" class="form-control" id="barcodeInput" placeholder="Enter product barcode">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="nameInput">Sugar (100/g)</label>
+                                    <input name="sugar" type="text" class="form-control" id="nameInput" placeholder="Enter product name">
+                                </div>
+                                <div class="col">
+                                    <label for="nameInput">Protein (100/g)</label>
+                                    <input name="protein" type="text" class="form-control" id="nameInput" placeholder="Enter product name">
+                                </div>
+                                <div class="col">
+                                    <label for="barcodeInput">Calcium (100/g)</label>
+                                    <input name="calcium" type="text" class="form-control" id="barcodeInput" placeholder="Enter product barcode">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="nameInput">Iron (100/g)</label>
+                                    <input name="iron" type="text" class="form-control" id="nameInput" placeholder="Enter product name">
+                                </div>
+                                <div class="col">
+                                    <label for="nameInput">Fiber (100/g)</label>
+                                    <input name="fiber" type="text" class="form-control" id="nameInput" placeholder="Enter product name">
+                                </div>
+                                <div class="col">
+                                    <label for="nameInput">Glucides (100/g)</label>
+                                    <input name="glucides" type="text" class="form-control" id="nameInput" placeholder="Enter product name">
+                                </div>
+                            </div>
+                            <div class="mt-3">
+                                <button type="button" class="btn btn-primary" onclick="stepper1.previous()">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="stepper1.next()">Next</button>
+                            </div>
+                        </div>
+                        <div id="test-l-3" role="tabpanel" class="bs-stepper-pane text-center" aria-labelledby="stepper1trigger3">
+                            <div class="mt-4 wi-400">
+                                <div class="input-group mb-3">
+                                    <div class="custom-file">
+                                        <label class="custom-file-label" for="inputGroupFile02">Choose file</label>
+                                        <input name="product_image" id="imageUpload" type="file" class="custom-file-input" id="inputGroupFile02">
+                                    </div>
+                                </div>
+                                <div class="progress mt-2">
+                                    <div id="progressBar" class="progress-bar progress-bar-striped" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-primary mt-5" onclick="stepper1.previous()">Previous</button>
+                            <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bs-stepper/dist/js/bs-stepper.min.js"></script>
+<script>
+var stepper1
+
+document.addEventListener('DOMContentLoaded', function() {
+    stepper1 = new Stepper(document.querySelector('#stepper1'))
+
+    var btnNextList = [].slice.call(document.querySelectorAll('.btn-next-form'))
+    var inputMailForm = document.getElementById('inputMailForm')
+    var inputPasswordForm = document.getElementById('inputPasswordForm')
+});
+</script>
+<script type="text/javascript">
+let imageUpload = document.querySelector("#imageUpload");
+let progressBar = document.querySelector("#progressBar");
+
+imageUpload.addEventListener("change", function(e) {
+    var done = false;
+    var value = 0;
+    setTimeout(function() {
+        for (let i = 0; i <= 100; i += 20) {
+            progressBar.style.width = `${i}%`;
+            progressBar.innerHTML = `Image uploaded successfuly!`;
+        }
+    }, 1000);
+});
+</script>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends "doctor/doctor_base.html" %}
+{% block container %}
+<div>
+    {% if messages %} {% for message in messages %}
+    <p class="text-center alert  alert-{{ message.tags }}">
+        {{ message }}
+    </p>
+    {% endfor %} {% endif %}
+</div>
+<div class="card mt-5 shadow">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12 col-md-12 col-sm-12">
+                <a class="btn btn-primary" href="{% url 'add_educate' %}">
+                    <i data-feather="plus"></i>&nbsp; Add new
+                </a>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 col-md-12 col-sm-12">
+                <div class="table-responsive">
+                    {% csrf_token %}
+                    <table class="table table-hover">
+                        <thead class="t">
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Type</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </thead>
+                        <tbody>
+                            {% for educate in data %}
+                            <tr>
+                                <td>{{educate.id}}</td>
+                                <td>{{educate.title}}</td>
+                                <td>{{educate.educate_type}}</td>
+                                <td class="text-muted">{{educate.created}}</td>
+                                <td>
+                                    <a href="{% url 'update_educate' edu=educate.id %}"><i data-feather="edit"></i></a>
+                                    <a data-id="{{educate.id}}" href="#" class="text-danger delete"><i data-feather="trash-2"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+let deleteElements = Array.from(document.getElementsByClassName("delete"));
+deleteElements.forEach(function(element) {
+    element.addEventListener("click", function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "{% url 'delete_educate' %}",
+            headers: {
+                "X-CSRFToken": $("input[name=csrfmiddlewaretoken]").val(),
+            },
+            data: {
+                id: element.getAttribute("data-id"),
+            },
+            success: function() {
+                let row = element.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+                console.log("element deleted");
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

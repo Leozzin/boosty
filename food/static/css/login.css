@@ -1,0 +1,140 @@
+
+
+.form-block {
+    background-color: #e1eef7;
+    border-radius: 7px;
+    font-family: "Raleway" !important;
+}
+
+.form-block h6 {
+    color:  #00234b;
+}
+
+.form-block input {
+    border-radius: 4px;
+    font-size: 14px !important;
+
+}
+
+.no-link {
+    text-decoration: none;
+    color: #212529;
+    transition: 0.3s;
+    display: block;
+}
+
+.no-link:hover {
+    text-decoration: none;
+    color: #212529;
+}
+
+.rrounded {
+    border-radius: 20px !important;
+    width: 140px !important;
+}
+
+.xcd {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.rbt {
+	font-family: "Roboto", "ubuntu", sans-serif, monospace;
+}
+
+
+.center-block {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-btn {
+	display: block !important;
+	position: relative !important;
+	margin: auto !important;
+	border-radius: 20px !important;
+	padding: 8px !important;
+	width: 100px !important;
+	border: none !important;
+	background-color: #0096d6;
+}
+
+
+form input {
+	font-size: 10px;
+}
+
+.xrd {
+    font-size: 70px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 15px;
+}
+
+.font-roboto {
+    font-family: "Roboto", "Raleway", "Ubuntu", sans-serif !important;
+}
+
+.xre{
+    height: 100px !important;
+    background-color: #e1eef7;
+    border: 1px solid #2b78aa !important;
+}
+
+.xre .card-body {
+    padding: 0.2rem !important;
+            margin-left: 0.5rem !important;
+}
+
+.xre .card-text {
+        font-family: "Roboto", "Raleway", sans-serif;
+        font-size: 14px !important;
+        color: #222 !important;
+
+}
+
+.xre .card-title {
+    padding: 0.05rem !important;
+    margin-bottom: 0.09rem !important;
+}
+
+
+
+.xre:hover {
+    background-color: #fff;
+    border: 1px solid #222;
+    color: #111;
+}
+
+
+
+
+.xtra {
+    font-family: "Roboto", "Raleway", sans-serif;
+    font-weight: bold;
+    color: rgba(200, 10, 10, 0.8);
+    text-align: center;
+}
+
+.xdc {
+    font-size: 1
+}
+
+.forget {
+	display: block;
+    text-align: center;
+    margin-top: 15px;
+}
+
+.social-menu__login .fb-icon {
+    color: #4267B2;
+}
+
+.social-menu__login .tw-icon {
+    color:  #1da1f2;
+}
+
+.social-menu__login .gm-icon {
+    color:  #D44638;
+}

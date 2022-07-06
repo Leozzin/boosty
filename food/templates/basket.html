@@ -1,0 +1,133 @@
+{% extends "base.html" %}
+{% load static %}
+{% block styles %}
+<link href="{% static 'css/eshop.css' %}" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bs-stepper/dist/css/bs-stepper.min.css">
+{% endblock %}
+{% block main_container %}
+<div class="custom-messages"></div>
+<div class="row"></div>
+<div class="row justify-content-center mb-5">
+    <div class="col-10 col-md-10 col-sm-12">
+        {% if order %}
+        <div class="card">
+            <h5 class="card-header bg-success text-light"><i class="fas fa-shopping-bag">&nbsp;</i>Shopping Bag</h5>
+            <div class="card-body text-center">
+                {% csrf_token %}
+                {% for orderline in order %}
+                <div class="row justify-content-between mb-3 p-3 product">
+                    <div class="col-1 col-md-1">
+                        <a href="#"><i class="text-danger fas fa-trash"></i></a>
+                    </div>
+                    <div class="col-3 col-md-3">
+                        <img style="width:50px; height: auto;" class="img-fluid" src="{{orderline.product.image.url}}" alt="sport shoes image">
+                    </div>
+                    <div class="col-3 col-md-3">
+                        <span class="font-weight-bold">{{orderline.product.name|capfirst}}</span>
+                    </div>
+                    <div class="col-2 col-md-2">
+                        <input class="form-control product-count" data-orderline-num="{{orderline.orderline_uid}}" id="productQuantity" placeholder="{{orderline.quantity}}" type="number" min="1" max="10">
+                    </div>
+                    <div data-id="{{orderline.product.id}}"  data-product-price="{{orderline.product.price}}" class="col-2 col-md-3 product-price">{{orderline.product.price}} (TND)</div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="card-footer">
+                <div class="row justify-content-around">
+                    <div class="col-5 col-md-5 col-sm-6">
+                        <button class="btn btn-secondary text-light"><i class="fas fa-money-bill-alt"></i> Total: <span id="basketTotalPrice">{{total}}</span> (TND)</button>
+                    </div>
+                    <div class="col-5 col-md-4 col-sm-6">
+                        <button id="purchaseBtn" type="button" class="btn btn-dark btn-block"><i class="fas fa-credit-card">&nbsp;</i>Purchase</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <h3 class="text-center text-dark">Your cart is empty <i class="fas fa-smile"></i></h3>
+        {% endif %}
+
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script type="text/javascript">
+let productCountElements = Array.from(document.getElementsByClassName("product-count"));
+window.addEventListener("load", function(event) {
+    productCountElements.forEach(function(inElm) {
+        let productCount = parseFloat(inElm.value);
+        let priceElement = inElm.parentNode.nextElementSibling;
+        let total = parseFloat(priceElement.getAttribute("data-product-price")) * productCount;
+        priceElement.innerText = `${Number(total).toFixed(2)} (TND)`;
+    });
+})
+
+function getOldCountById(id) {
+    var oldCount = 0;
+    const basket = JSON.parse(window.localStorage.getItem("basket"));
+    let result = basket.filter(function(item) { item.id == id });
+    console.log(`OldCount(out of loop):: ${result}`);
+    return basket[0].count;
+}
+
+let basketTotalPrice = document.getElementById("basketTotalPrice");
+
+productCountElements.forEach(function(inElm) {
+    inElm.addEventListener("change", function(event) {
+        let productCount = parseFloat(inElm.value);
+        let priceElement = inElm.parentNode.nextElementSibling;
+        let orderlineNum = inElm.getAttribute("data-orderline-num");
+        //console.log("Order Line UID:: ", orderlineNum);
+        let total = parseFloat(priceElement.getAttribute("data-product-price")) * productCount;
+        priceElement.innerText = `${Number(total).toFixed(2)} (TND)`;
+        let totalBasket = 0;
+        productCountElements.forEach(function(item) {
+            totalBasket += parseFloat(item.parentNode.nextElementSibling.innerText);
+
+        $.ajax({
+            type: "POST",
+            url: "{% url  'update_cart_product' %}",
+            headers: {
+                "X-CSRFtoken": $("input[name=csrfmiddlewaretoken]").val(),
+            },
+            data: {
+                item_uid: orderlineNum,
+                item_qty: productCount,
+            },
+            success: function(msg) {
+                console.log("orderline updated")
+            },
+            error: function(err) {
+                console.log("Error updating orderline")
+            }
+        })
+
+    });
+        basketTotalPrice.innerText = Number(totalBasket).toFixed(2);
+        });
+
+    
+
+})
+
+let purchaseBtn = document.querySelector("#purchaseBtn");
+purchaseBtn.addEventListener("click", function(event) {
+    $.ajax({
+        type: "POST",
+        url: "{% url 'create_order' %}",
+        headers: {
+            'X-CSRFtoken': $("input[name=csrfmiddlewaretoken]").val(),
+        },
+        data: {
+            order: "{{order.order_number}}",
+        },
+        success: function() {
+            alert("basket was purchased")
+        },
+        error: function(er) {
+            alert(`AKALA::Error: \n -Status Code: ${er.status}\n -Status Text: ${er.statusText}`)
+        }
+    })
+})
+</script>
+{% endblock %}

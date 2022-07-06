@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+<div class="row justify-content-center">
+    <div class="col-10 col-md-10 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <form method="POST" action="{% url 'edit_blog' pst=post.id %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="titleInput">Title</label>
+                        <input value="{{post.title}}" type="text" name="title" class="form-control" id="titleInput" placeholder="Title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contentInput">Title</label>
+                        <textarea name="content" class="form-control" name="content" id="contentInput" cols="5" rows="6" placeholder="Content">{{post.content}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-block btn-info" type="submit"><i class="fas fa-pen">&nbsp;</i>Edit</button>
+                        <a href="{% url 'bloglist' %}" class="btn btn-block btn-danger"><i class="fas fa-cancel">&nbsp;</i>Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

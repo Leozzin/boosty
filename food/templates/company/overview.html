@@ -1,0 +1,41 @@
+{% extends "company/company_base.html" %}
+{% load static %}
+{% block container %}
+<h1 class="mt-4">Statistic Overview</h1>
+<div class="row">
+    <div class="col-6 col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="chart1"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="chart2"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mt-2">
+    <div class="col-6 col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="chart3"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-6 col-md-6 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <canvas id="chart4"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+<script src="{% static 'js/company/main.js' %}"></script>
+{% endblock %}

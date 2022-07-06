@@ -1,0 +1,76 @@
+{% extends "company/company_base.html" %}
+{% block container %}
+<h1 class="mt-4 text-md-center text-lg-center mb-md-3">{{company.name}}</h1>
+<div class="row justify-content-center">
+    <div class="col-11 col-md-11 col-sm-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="profile-details">
+                    <figure class="profile-ava">
+                        <img style="width:200px;height: 200px;" src="{{ user.avatar.url }}" alt="Author" />
+                    </figure>
+                    <div class="profile-context">
+                        <div class="profile-name">
+                            <h3>{{user.name}}</h3>
+                        </div>
+                        <div class="profile-socmed">
+                            <a href="#"><i class="fab fa-facebook-square"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-pinterest"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fas fa-envelope"></i></a>
+                        </div>
+                    </div>
+                    <!-- end profile-context -->
+                </div>
+                <div class="m-4" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="m-2">
+                        <div class="row justify-content-center">
+                            <div class="col-12">
+                                <div class="user-infos">
+                                    <form method="POST" action="{% url 'company' %}" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <label for="fnameInput">{{company.name}}</label>
+                                            <input type="text" class="form-control" name="cname" id="fnameInput" placeholder="{{company.name}}" value="{{company.name}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="lnameInput">EID</label>
+                                            <input type="text" class="form-control" name="eid" id="lnameInput" placeholder="{{company.eid}}" value="{{company.eid}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="addressInput">Work Domain</label>
+                                            <input type="text" class="form-control" name="domain" id="addressInput" placeholder="{{company.domain}}" value="{{company.domain}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phoneInput">Phone</label>
+                                            <input type="text" class="form-control" name="phone" id="phoneInput" placeholder="{{company.phone}}" value="{{company.phone}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="birthdayInput">Fax</label>
+                                            <input type="text" class="form-control" name="fax" id="birthdayInput" placeholder="{{company.fax}}" value="{{company.fax}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="birthdayInput">Address</label>
+                                            <input type="text" class="form-control" name="address" id="birthdayInput" placeholder="{{company.address}}" value="{{company.address}}" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="avatarInput">Avatar</label>
+                                            <input type="file" class="form-control" id="avatarInput" value="{{user.avatar.url}}" name="avatar_image" />
+                                        </div>
+                                        <button type="submit" class="btn mt-3 btn-primary">
+                                            Update
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end row -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
