@@ -17,7 +17,7 @@
                 {% for orderline in order %}
                 <div class="row justify-content-between mb-3 p-3 product">
                     <div class="col-1 col-md-1">
-                        <a href="#"><i class="text-danger fas fa-trash"></i></a>
+                        <a href="/store/cart/{{orderline.id}}"><i class="text-danger fas fa-trash"></i></a>
                     </div>
                     <div class="col-3 col-md-3">
                         <img style="width:50px; height: auto;" class="img-fluid" src="{{orderline.product.image.url}}" alt="sport shoes image">

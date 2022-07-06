@@ -49,6 +49,7 @@ urlpatterns = [
     path("recipedislike/", views.recipe_dislike, name="recipedislike"),
     path("store/product/<int:id>/", views.product, name="product"),
     path("store/cart/", views.cart, name="basket"),
+    path("store/cart/<int:id>", views.remove_product_cart, name="remove_product_cart"),
     path("store/add_to_cart/", views.add_to_cart, name="add_to_basket"),
     path("store/cart/update/", views.update_cart_product, name="update_cart_product"),
     path("store/checkout/", views.checkout, name="create_order"),

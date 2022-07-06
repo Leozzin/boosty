@@ -744,6 +744,13 @@ def cart(request):
         {"order": orderlines, "total": total, "page_title": "Cart"},
     )
 
+@login_required
+@subsciber_required
+def remove_product_cart(request, id):
+    orderline = OrderLine.objects.get(id=id)
+    orderline.delete()
+    return redirect('basket')
+
 
 @login_required
 @subsciber_required
