@@ -122,10 +122,10 @@ purchaseBtn.addEventListener("click", function(event) {
             order: "{{order.order_number}}",
         },
         success: function() {
-            alert("basket was purchased")
+            window.location.replace("/store/cart/");
         },
         error: function(er) {
-            alert(`AKALA::Error: \n -Status Code: ${er.status}\n -Status Text: ${er.statusText}`)
+            alert(`Boosty::Error: \n -Status Code: ${er.status}\n -Status Text: ${er.statusText}`)
         }
     })
 })

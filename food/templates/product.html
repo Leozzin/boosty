@@ -154,7 +154,7 @@ buyBtn.addEventListener("click", function(event) {
             alert("You purchased new product")
         },
         error: function(er) {
-            alert(`AKALA::Error: ${er}`)
+            alert(`BOOSTY::Error: ${er}`)
         }
     })
 })
@@ -172,11 +172,11 @@ addBtn.addEventListener("click", function(event) {
             id: document.querySelector("#productTable").getAttribute("data-product-id")
         },
         success: function() {
-            alert("new product added to your basket")
+            window.location.replace("/store/cart/");
             basketBadge.innerText = parseInt(basketBadge.innerText, 10) + 1;
         },
         error: function(er) {
-            alert(`AKALA::Error: ${er}`)
+            alert(`BOOSTY::Error: ${er}`)
         }
     })
 })
